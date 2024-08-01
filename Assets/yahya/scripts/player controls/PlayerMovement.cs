@@ -13,10 +13,12 @@ public class PlayerMovement : MonoBehaviour
     
     private float Horizontal;
 
+
     //runs every frame
     void Update()
     {
         Move();
+        Flip();
     }
 
 
@@ -50,12 +52,28 @@ public class PlayerMovement : MonoBehaviour
         if(context.performed && Grounded())
         {
             Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
-
         }
         //if jump button held player jumps higher
-        if(context.canceled && Rb.velocity.y > 0f)
+        if(context.canceled && Rb.velocity.y >= (JumpForce*0.5f))
         {
             Rb.velocity = new Vector2(Rb.velocity.x, JumpForce * 0.5f);
         }
+    }
+
+
+    //makes sure character faces direction it is moving
+    private void Flip()
+    {
+        Vector3 CurrentScale = transform.localScale;
+        if((Horizontal > 0) && (transform.localScale.x < 0))
+        {
+            CurrentScale.x *= -1;
+        }
+        else if(((Horizontal < 0) && (transform.localScale.x > 0)))
+        {
+            CurrentScale.x *= -1;
+        }
+        transform.localScale = CurrentScale;
+
     }
 }
