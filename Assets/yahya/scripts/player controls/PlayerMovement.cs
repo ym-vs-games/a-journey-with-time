@@ -10,13 +10,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float TopSpeed; //fastest horizontal velocity
     [SerializeField] private float JumpForce; //how high player can jump
     [SerializeField] private Rigidbody2D Rb; //rigid body system
-    [SerializeField] private float Acceleration;
-    [SerializeField] private float Decceleration;
-    [SerializeField] private float PowerFactor;
+    [SerializeField] private float Acceleration; // acceleration factor rate
+    [SerializeField] private float Decceleration; //decceleration factor rate
+    [SerializeField] private float PowerFactor; //used to tweak how fast player accerates/decelerates
+    
+
+    private float JumpLeniency; //amount of time after touching ground player can still jump
     private float Horizontal;
 
 
-    //runs every frame
+    void Update()
+    {
+        Grounded();
+        Timers();
+    }
+
+
+    //runs every physics update
     void FixedUpdate()
     {
         Move();
@@ -25,10 +35,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     //checks if player touching the ground
-    private bool Grounded()
+    private void Grounded()
     {  
         //checks any object with ground layer within circle around player feet
-        return  Physics2D.OverlapCircle(GroundChecker.position, 0.2f, Ground);
+        if(Physics2D.OverlapCircle(GroundChecker.position, 0.2f, Ground))
+        {
+            JumpLeniency = 0.1f;
+        }
     }
 
 
@@ -55,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         //jumps if button pressed and not touching ground
-        if(context.performed && Grounded())
+        if(context.performed && JumpLeniency > 0)
         {
             Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
         }
@@ -81,5 +94,10 @@ public class PlayerMovement : MonoBehaviour
         }
         transform.localScale = CurrentScale;
 
+    }
+
+    private void Timers()
+    {
+        JumpLeniency -= Time.deltaTime;
     }
 }

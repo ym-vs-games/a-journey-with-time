@@ -571,7 +571,7 @@ MonoBehaviour:
   JumpForce: 10
   Rb: {fileID: 228200816}
   Acceleration: 3
-  Decceleration: 2
+  Decceleration: 5
   PowerFactor: 1
 --- !u!114 &228200820
 MonoBehaviour:
@@ -770,7 +770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &473980953
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1130,7 +1130,7 @@ Transform:
   m_GameObject: {fileID: 1011888832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7990364, y: 1.0882919, z: -5.1195087}
+  m_LocalPosition: {x: 0, y: 4.02, z: -5.1195087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1288,7 +1288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1487117801
 Transform:
   m_ObjectHideFlags: 0
