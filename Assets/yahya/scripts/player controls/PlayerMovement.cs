@@ -5,17 +5,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Transform GroundChecker;
-    [SerializeField] private LayerMask Ground;
-    [SerializeField] private float Speed;
-    [SerializeField] private float JumpForce;
-    [SerializeField] private Rigidbody2D Rb;
-    
+    [SerializeField] private Transform GroundChecker; //object used for checking if player touching ground
+    [SerializeField] private LayerMask Ground;  //layer applied to all ground objects
+    [SerializeField] private float TopSpeed; //fastest horizontal velocity
+    [SerializeField] private float JumpForce; //how high player can jump
+    [SerializeField] private Rigidbody2D Rb; //rigid body system
+    [SerializeField] private float Acceleration;
+    [SerializeField] private float Decceleration;
+    [SerializeField] private float PowerFactor;
     private float Horizontal;
 
 
     //runs every frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
         Flip();
@@ -41,7 +43,11 @@ public class PlayerMovement : MonoBehaviour
     //sets player x velocity based on speed and direction
     private void Move()
     {
-        Rb.velocity = new Vector2(Horizontal * Speed, Rb.velocity.y);
+        float TargetSpeed = Horizontal*TopSpeed; //speed player wants to be at
+        float SpeedDiff = (TargetSpeed - Rb.velocity.x); // difference between target speed and current speed
+        float AccelerationRate = (Mathf.Abs(TargetSpeed) > 0.01f) ? Acceleration : Decceleration; //sets rate based on target speed
+        float ForceVector = Mathf.Pow(Mathf.Abs(SpeedDiff)*AccelerationRate, PowerFactor) * Mathf.Sign(SpeedDiff); //determines direction and magnitude of the force
+        Rb.AddForce(ForceVector* Vector2.right); //applies a force on the player
     }
     
 
