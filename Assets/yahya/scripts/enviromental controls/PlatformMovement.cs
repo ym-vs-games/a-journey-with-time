@@ -8,9 +8,11 @@ public class PlatformMovement : MonoBehaviour
     [SerializeField] private float Speed; //how fast platform moves
     [SerializeField] private Rigidbody2D Rb;
     
+
     private Rigidbody2D PlayerRb;
     private Transform CurrentWaypoint; //waypoint platform currently moving to
     private int Index = 0;  //index counter for Waypoints list
+
 
     void Start()
     {
@@ -42,6 +44,7 @@ public class PlatformMovement : MonoBehaviour
         }
     }
 
+
     void OnTriggerEnter2D(Collider2D Touching)
     {
         if(Touching.CompareTag("Player"))
@@ -49,6 +52,7 @@ public class PlatformMovement : MonoBehaviour
             Touching.transform.SetParent(transform);
         }
     }
+
 
     void OnTriggerExit2D(Collider2D Touching)
     {

@@ -4,20 +4,39 @@ using UnityEngine;
 
 public class camerafollow : MonoBehaviour
 {
-    [SerializeField] private Transform Player; 
+    [SerializeField] private Transform Player;
+    [SerializeField] private Transform PlayerPast;
     [SerializeField] private float FollowSpeed; 
+    [SerializeField] private TimeSplit SplitScript;
+    
+
+    private Transform ActiveFollow;
     private Vector3 Offset; 
+
 
     void Start()
     {
         Offset = transform.position - Player.position;
     }
 
+
+    void Update()
+    {
+        if(SplitScript.SplitActive)
+        {
+            ActiveFollow = PlayerPast;
+        }
+        else
+        {
+            ActiveFollow = Player;
+        }
+        Debug.Log(SplitScript.SplitActive);
+    }
+
     void LateUpdate()
     {
 
-        Vector3 DesiredPosition = Player.position + Offset;
+        Vector3 DesiredPosition = ActiveFollow.position + Offset;
         transform.position = Vector3.Lerp(transform.position, DesiredPosition, FollowSpeed * Time.deltaTime);
-        
     }
 }
