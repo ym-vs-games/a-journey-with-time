@@ -30,8 +30,9 @@ public class camerafollow : MonoBehaviour
         {
             ActiveFollow = Player;
         }
-        Debug.Log(SplitScript.SplitActive);
+        
     }
+
 
     void LateUpdate()
     {

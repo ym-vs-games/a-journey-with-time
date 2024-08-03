@@ -18,7 +18,7 @@ public class TimeSplit : MonoBehaviour
     {
         if (context.performed && !SplitActive)
         {
-            StartCoroutine(Split(SplitActive, PlayerPast, PlayerInput, PlayerPastInput));
+            StartCoroutine(Split());
         }
     }
 
@@ -35,7 +35,7 @@ public class TimeSplit : MonoBehaviour
     }
 
 
-    private IEnumerator Split(bool SplitActive, GameObject PlayerPast, PlayerInput PlayerInput,PlayerInput PlayerPastInput)
+    private IEnumerator Split()
     {
         PlayerPast.transform.position = transform.position; // Position the past player at the current player's position
         SetCurrentInput(PlayerPastInput); // Switch input control to the past player
