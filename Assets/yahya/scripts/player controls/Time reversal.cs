@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Timereversal : MonoBehaviour
 {
-    [SerializeField] private GameObject WaypointPrefab;
-    [SerializeField] private GameObject CurrentCheckpoint;
+    [SerializeField] private GameObject WaypointPrefab; //the waypoint object
+    [SerializeField] private GameObject CurrentCheckpoint; //last checkpoint player touched
+    [SerializeField] private bool Dead; //flag to check if player died
+    [SerializeField] private float ReversalSpeed; //how fast they retrace steps
 
     private Stack<GameObject> WaypointStack;  // Declare the stack
-    private GameObject LastWaypoint;
+    private GameObject LastWaypoint; //previous waypoint created
 
     void Start()
     {
         // Initialize the stack in the Start method
-        WaypointStack = new Stack<GameObject>();
+        WaypointStack = new Stack<GameObject>(); //stack holds all waypoint created
         
         // Ensure CurrentCheckpoint is assigned, handle null cases here
         if (CurrentCheckpoint == null)
@@ -24,7 +26,14 @@ public class Timereversal : MonoBehaviour
 
     void Update()
     {
-        CreateWaypoint();
+        if(!Dead)
+        {
+            CreateWaypoint();
+        }
+        else
+        {
+            StartCoroutine(Reversal());
+        }
     }
 
     private void CreateWaypoint()
@@ -39,4 +48,37 @@ public class Timereversal : MonoBehaviour
             WaypointStack.Push(LastWaypoint);
         }
     }
+
+    private IEnumerator Reversal()
+    {
+        while (LastWaypoint != null)
+        {
+            // Move towards the LastWaypoint position
+            while (Vector2.Distance(transform.position, LastWaypoint.transform.position) > 0.01f)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, LastWaypoint.transform.position, ReversalSpeed * Time.deltaTime);
+                yield return null; // Wait for the next frame
+            }
+
+            // Destroy the LastWaypoint and pop the next waypoint from the stack
+            Destroy(LastWaypoint);
+            if (WaypointStack.Count > 0)
+            {
+                LastWaypoint = WaypointStack.Pop();
+            }
+            else
+            {
+            LastWaypoint = null; 
+            }
+        }
+
+        // Move towards the CurrentCheckpoint position
+        while (transform.position != CurrentCheckpoint.transform.position)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, CurrentCheckpoint.transform.position, ReversalSpeed * Time.deltaTime);
+            yield return null; // Wait for the next frame
+        }
+
+        Dead = false;
+    } 
 }

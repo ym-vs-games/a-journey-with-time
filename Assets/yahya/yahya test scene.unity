@@ -267,8 +267,8 @@ GameObject:
   - component: {fileID: 228200817}
   - component: {fileID: 228200816}
   - component: {fileID: 228200819}
-  - component: {fileID: 228200820}
   - component: {fileID: 228200821}
+  - component: {fileID: 228200822}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -467,7 +467,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 228200820}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TimeSplit, Assembly-CSharp
         m_MethodName: ActivateSplit
         m_Mode: 0
@@ -575,7 +575,23 @@ MonoBehaviour:
   Acceleration: 3
   Decceleration: 5
   PowerFactor: 1
---- !u!114 &228200820
+--- !u!114 &228200821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228200813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dd4ef66946b98498891002fb487be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaypointPrefab: {fileID: 1559291260}
+  CurrentCheckpoint: {fileID: 328598072}
+  Dead: 0
+  ReversalSpeed: 1
+--- !u!114 &228200822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,20 +607,6 @@ MonoBehaviour:
   PlayerInput: {fileID: 228200818}
   PlayerPastInput: {fileID: 755437737}
   SplitActive: 0
---- !u!114 &228200821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 228200813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1dd4ef66946b98498891002fb487be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaypointPrefab: {fileID: 1559291260}
-  CurrentCheckpoint: {fileID: 328598072}
 --- !u!1 &229640627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1631,7 @@ MonoBehaviour:
   Player: {fileID: 228200814}
   PlayerPast: {fileID: 755437738}
   FollowSpeed: 4
-  SplitScript: {fileID: 228200820}
+  SplitScript: {fileID: 0}
 --- !u!1 &1141883066
 GameObject:
   m_ObjectHideFlags: 0
