@@ -590,7 +590,7 @@ MonoBehaviour:
   WaypointPrefab: {fileID: 1559291260}
   CurrentCheckpoint: {fileID: 328598072}
   Dead: 0
-  ReversalSpeed: 1
+  ReversalSpeed: 15
 --- !u!114 &228200822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,7 +1551,7 @@ Transform:
   m_GameObject: {fileID: 1011888832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.01, y: 2.94, z: -5.1195087}
+  m_LocalPosition: {x: -9.66, y: 2.94, z: -5.1195087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1630,8 +1630,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 228200814}
   PlayerPast: {fileID: 755437738}
-  FollowSpeed: 4
-  SplitScript: {fileID: 0}
+  FollowSpeed: 20
+  SplitScript: {fileID: 228200822}
 --- !u!1 &1141883066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,12 +2232,12 @@ GameObject:
   - component: {fileID: 1712658412}
   - component: {fileID: 1712658411}
   m_Layer: 0
-  m_Name: TreeSaplings
+  m_Name: Bamboshoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1712658411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2299,7 +2299,7 @@ Transform:
   m_GameObject: {fileID: 1712658410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.49, y: 0.699, z: 0}
+  m_LocalPosition: {x: -4.49, y: 0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
