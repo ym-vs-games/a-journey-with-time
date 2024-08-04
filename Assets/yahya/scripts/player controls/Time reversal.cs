@@ -9,22 +9,18 @@ public class Timereversal : MonoBehaviour
     [SerializeField] private bool Dead; // Flag to check if player died
     [SerializeField] private float ReversalSpeed; // How fast they retrace steps
 
+
     private Stack<GameObject> WaypointStack;  // Stack to hold all waypoints created
     private GameObject LastWaypoint; // Previous waypoint created
-
     private bool IsReversing = false; // To track if reversal is in progress
+
 
     void Start()
     {
         // Initialize the stack in the Start method
         WaypointStack = new Stack<GameObject>(); 
-        
-        // Ensure CurrentCheckpoint is assigned, handle null cases here
-        if (CurrentCheckpoint == null)
-        {
-            Debug.LogError("CurrentCheckpoint is not assigned in the inspector.");
-        }
     }
+
 
     void Update()
     {
@@ -39,6 +35,7 @@ public class Timereversal : MonoBehaviour
         }
     }
 
+
     private void CreateWaypoint()
     {
         if (CurrentCheckpoint == null) return; // Early exit if CurrentCheckpoint is not set
@@ -49,9 +46,9 @@ public class Timereversal : MonoBehaviour
         {
             LastWaypoint = Instantiate(WaypointPrefab, transform.position, transform.rotation);
             WaypointStack.Push(LastWaypoint);
-            Debug.Log("Waypoint added. Stack size: " + WaypointStack.Count);
         }
     }
+
 
     private IEnumerator Reversal()
     {
@@ -61,7 +58,6 @@ public class Timereversal : MonoBehaviour
         {
             if (LastWaypoint.transform == null)
             {
-                Debug.LogError("LastWaypoint transform is null!");
                 break;
             }
 
@@ -77,7 +73,6 @@ public class Timereversal : MonoBehaviour
             if (WaypointStack.Count > 0)
             {
                 LastWaypoint = WaypointStack.Pop();
-                Debug.Log("Moving to next waypoint. Stack size: " + WaypointStack.Count);
             }
             else
             {
@@ -90,7 +85,6 @@ public class Timereversal : MonoBehaviour
         {
             if (CurrentCheckpoint == null || CurrentCheckpoint.transform == null)
             {
-                Debug.LogError("CurrentCheckpoint or its transform is null!");
                 break;
             }
 
