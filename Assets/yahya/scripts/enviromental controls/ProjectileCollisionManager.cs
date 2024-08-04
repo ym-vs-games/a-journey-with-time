@@ -17,7 +17,6 @@ public class ProjectileCollisionManager : MonoBehaviour
     private void Move()
     {
         Rb.velocity = (ShootDirection.right * Speed);
-        Debug.Log(ShootDirection.right);
     }
 
     void OnTriggerEnter2D(Collider2D Collide)
