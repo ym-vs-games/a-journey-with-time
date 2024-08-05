@@ -1673,7 +1673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1229069948}
   shootPoint: {fileID: 1231836835}
-  ShootIncrement: 2
+  ShootIncrement: 3
   SlowDownFactor: 4
   AbilityCheck: {fileID: 228200822}
 --- !u!1 &1383631857
