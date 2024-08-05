@@ -1,18 +1,28 @@
+
 using System.Collections;
+
 using System.Collections.Generic;
+
 using UnityEngine;
 
-public class MoveScript : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class MoveRight : MonoBehaviour
+
+{
+
+    public float moveSpeed = 5.0f; // You can adjust this speed in the Inspector
+
+  
+
+    void Update()
+
+    {
+
+        // Move the object to the right using transform.right
+
+        transform.position += transform.right * moveSpeed * Time.deltaTime;
+
+    }
+
 }
