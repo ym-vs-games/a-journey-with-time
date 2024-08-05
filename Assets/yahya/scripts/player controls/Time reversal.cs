@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timereversal : MonoBehaviour
+public class TimeReversal : MonoBehaviour
 {
     [SerializeField] private GameObject WaypointPrefab; // The waypoint object
-    [SerializeField] private GameObject CurrentCheckpoint; // Last checkpoint player touched
     [SerializeField] private bool Dead; // Flag to check if player died
     [SerializeField] private float ReversalSpeed; // How fast they retrace steps
 
-
+    public GameObject CurrentCheckpoint; // Last checkpoint player touched
     private Stack<GameObject> WaypointStack;  // Stack to hold all waypoints created
     private GameObject LastWaypoint; // Previous waypoint created
     private bool IsReversing = false; // To track if reversal is in progress
@@ -24,11 +23,11 @@ public class Timereversal : MonoBehaviour
 
     void Update()
     {
-        if (!Dead)
+        if (!Dead && CurrentCheckpoint != null)
         {
             CreateWaypoint();
         }
-        else if (!IsReversing)
+        else if (!IsReversing && CurrentCheckpoint != null)
         {
             // Only start the coroutine if it is not already running
             StartCoroutine(Reversal());

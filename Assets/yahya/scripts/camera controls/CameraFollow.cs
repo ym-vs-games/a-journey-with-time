@@ -5,12 +5,9 @@ using UnityEngine;
 public class camerafollow : MonoBehaviour
 {
     [SerializeField] private Transform Player;
-    [SerializeField] private Transform PlayerPast;
     [SerializeField] private float FollowSpeed; 
-    [SerializeField] private TimeSplit SplitScript;
     
 
-    private Transform ActiveFollow;
     private Vector3 Offset; 
 
 
@@ -22,15 +19,7 @@ public class camerafollow : MonoBehaviour
 
     void Update()
     {
-        if(SplitScript.SplitActive)
-        {
-            ActiveFollow = PlayerPast;
-        }
-        else
-        {
-            ActiveFollow = Player;
-        }
-        Vector3 DesiredPosition = ActiveFollow.position + Offset;
+        Vector3 DesiredPosition = Player.position + Offset;
         transform.position = Vector3.Lerp(transform.position, DesiredPosition, FollowSpeed * Time.deltaTime);
     }
 
