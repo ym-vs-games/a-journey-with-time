@@ -610,6 +610,9 @@ MonoBehaviour:
   SlowUnlocked: 0
   AccelerateUnlocked: 0
   StopUnlocked: 0
+  StopActive: 0
+  SlowActive: 0
+  AccelerateActive: 0
 --- !u!1 &229640627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,9 +1506,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d86e33f8e79c645b6242e887b2587e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 6
   Rb: {fileID: 1229069952}
   ShootDirection: {fileID: 1231836835}
+  SlowDownFactor: 8
+  AbilityCheck: {fileID: 228200822}
 --- !u!50 &1229069952
 Rigidbody2D:
   serializedVersion: 4
@@ -1669,6 +1674,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1229069948}
   shootPoint: {fileID: 1231836835}
   ShootIncrement: 2
+  SlowDownFactor: 4
+  AbilityCheck: {fileID: 228200822}
 --- !u!1 &1383631857
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class ProjectileCollisionManager : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private Rigidbody2D Rb;
     [SerializeField] private Transform ShootDirection;
+    [SerializeField] private float SlowDownFactor;
+    [SerializeField] AbilityController AbilityCheck;
 
     void Start()
     {
@@ -16,7 +18,14 @@ public class ProjectileCollisionManager : MonoBehaviour
 
     private void Move()
     {
-        Rb.velocity =(Vector2.down * Speed);
+        if(AbilityCheck.SlowActive == true)
+        {
+            Rb.velocity = (Vector2.down * Speed / SlowDownFactor);
+        }
+        else
+        {
+            Rb.velocity = (Vector2.down * Speed);
+        }   
     }
 
     void OnTriggerEnter2D(Collider2D Collide)
