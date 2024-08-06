@@ -549,7 +549,19 @@ MonoBehaviour:
     m_ActionId: cce91216-cf4d-4a38-a279-edfab75ba2b2
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 357166969}
+        m_TargetAssemblyTypeName: LeverDoorControls, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 62b25e7e-403e-400c-9a1e-f6b8a4096c5b
     m_ActionName: Player/Interate[/Keyboard/anyKey]
   m_NeverAutoSwitchControlSchemes: 0
@@ -961,6 +973,8 @@ GameObject:
   m_Component:
   - component: {fileID: 357166968}
   - component: {fileID: 357166967}
+  - component: {fileID: 357166969}
+  - component: {fileID: 357166970}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -1035,6 +1049,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 286525442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &357166969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357166966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794028393cad12f4fa428b761e0fe96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rb: {fileID: 2104937296}
+  LeverSprite: {fileID: 357166967}
+  On: {fileID: 21300000, guid: cb3c1525efe440e418c436d142f54e8c, type: 3}
+  Off: {fileID: 21300000, guid: 1d215f96625735c4295177b92d73af46, type: 3}
+  OpenSpeed: 2
+  CloseSpeed: 2
+--- !u!61 &357166970
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357166966}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 0.64}
+  m_EdgeRadius: 0
 --- !u!1 &473980952
 GameObject:
   m_ObjectHideFlags: 0

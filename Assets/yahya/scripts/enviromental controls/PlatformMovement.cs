@@ -69,4 +69,5 @@ public class PlatformMovement : MonoBehaviour
             Touching.transform.SetParent(null);
         }
     }
+
 }
