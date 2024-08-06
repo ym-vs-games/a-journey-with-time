@@ -10,16 +10,16 @@ public class TimeReversal : MonoBehaviour
 
     public GameObject CurrentCheckpoint; // Last checkpoint player touched
     private Stack<GameObject> WaypointStack;  // Stack to hold all waypoints created
+    private List<GameObject> AllWaypoints;    // List to track all waypoints
     private GameObject LastWaypoint; // Previous waypoint created
     private bool IsReversing = false; // To track if reversal is in progress
 
-
     void Start()
     {
-        // Initialize the stack in the Start method
-        WaypointStack = new Stack<GameObject>(); 
+        // Initialize the stack and list in the Start method
+        WaypointStack = new Stack<GameObject>();
+        AllWaypoints = new List<GameObject>();
     }
-
 
     void Update()
     {
@@ -34,7 +34,6 @@ public class TimeReversal : MonoBehaviour
         }
     }
 
-
     private void CreateWaypoint()
     {
         if (CurrentCheckpoint == null) return; // Early exit if CurrentCheckpoint is not set
@@ -44,10 +43,11 @@ public class TimeReversal : MonoBehaviour
             (LastWaypoint != null && Vector2.Distance(LastWaypoint.transform.position, transform.position) > 5f))
         {
             LastWaypoint = Instantiate(WaypointPrefab, transform.position, transform.rotation);
+            LastWaypoint.name = "ReversalWaypoint"; // Ensure the correct name is set
             WaypointStack.Push(LastWaypoint);
+            AllWaypoints.Add(LastWaypoint); // Track all waypoints
         }
     }
-
 
     private IEnumerator Reversal()
     {
@@ -75,7 +75,7 @@ public class TimeReversal : MonoBehaviour
             }
             else
             {
-                LastWaypoint = null; 
+                LastWaypoint = null;
             }
         }
 
@@ -93,5 +93,24 @@ public class TimeReversal : MonoBehaviour
 
         Dead = false;
         IsReversing = false; // Mark that reversal has ended
+    }
+
+    void OnTriggerEnter2D(Collider2D Clear)
+    {
+        if (Clear.CompareTag("Respawn"))
+        {
+            
+            WaypointStack.Clear();
+            // Destroy all waypoints
+            foreach (GameObject waypoint in AllWaypoints)
+            {
+                if (waypoint != null)
+                {
+                    Destroy(waypoint);
+                }
+            }
+            // Clear the list of all waypoints
+            AllWaypoints.Clear();
+        }
     }
 }

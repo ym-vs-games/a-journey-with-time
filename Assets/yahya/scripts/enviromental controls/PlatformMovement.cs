@@ -7,7 +7,8 @@ public class PlatformMovement : MonoBehaviour
     [SerializeField] private Transform[] Waypoints; //list of location of waypoints
     [SerializeField] private float Speed; //how fast platform moves
     [SerializeField] private Rigidbody2D Rb;
-    
+    [SerializeField] private float SlowDownFactor;
+    [SerializeField] AbilityController AbilityCheck;
 
     private Rigidbody2D PlayerRb;
     private Transform CurrentWaypoint; //waypoint platform currently moving to
@@ -29,7 +30,14 @@ public class PlatformMovement : MonoBehaviour
 
     private void Circle()
     {   
-        transform.position = Vector2.MoveTowards(transform.position, CurrentWaypoint.position, Speed * Time.deltaTime);
+        if(AbilityCheck.SlowActive)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, CurrentWaypoint.position, Speed * Time.deltaTime / SlowDownFactor);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, CurrentWaypoint.position, Speed * Time.deltaTime);
+        }
         if(Vector2.Distance(transform.position, CurrentWaypoint.position) < 0.1f) //change waypoint once it reaches current one
         {
             if(Index == (Waypoints.Length - 1)) //checks to see if it reached end of waypoint list
