@@ -79,6 +79,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Slide(InputAction.CallbackContext context)
+    {
+        // slides if button pressed and touching the ground
+        if(context.performed && JumpLeniency > 0)
+        {
+            // Apply a burst of horizontal speed for sliding effect
+            float slideSpeed = TopSpeed * 1.5f; // Increase the speed for sliding
+            Rb.velocity = new Vector2(Horizontal * slideSpeed, Rb.velocity.y);
+        
+            // Optionally reduce friction during the slide
+            Rb.drag = 0.5f; // lower drag for a smoother slide
+        }
+
+        // Reset drag when slide ends
+        if(context.canceled)
+        {
+            Rb.drag = 1f; // return drag to normal
+        }
+    }
+
 
     //makes sure character faces direction it is moving
     private void Flip()
